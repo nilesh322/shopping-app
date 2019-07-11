@@ -1,0 +1,15 @@
+import React from 'react';
+import '../../App.css';
+
+const Slide = ({ image }) => {
+    console.log("slide image", image)
+    const styles = {
+      backgroundImage: `url(${image})`,
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: '50% 60%'
+    }
+    return <div className="slide" style={styles}></div>
+  }
+  
+export default Slide

@@ -1,0 +1,56 @@
+{
+    "products": [
+         {
+            "id": 1,
+            "name": "Splendor",
+            "price": 50000
+        },
+        {
+            "id": 2,
+            "name": "Shine",
+            "price": 70000
+        },
+        {
+            "id": 3,
+            "name": "Pulsar",
+            "price": 80000
+        },
+        {
+            "id": 4,
+            "name": "Unicorn",
+            "price": 100000
+        },
+        {
+            "id": 5,
+            "name": "Classic Bullet",
+            "price": 150000
+        }
+    ],
+    "Mobile" : [
+        {
+            "id": 1,
+            "name": "Samsung",
+            "price": 10000
+        },
+        {
+            "id": 2,
+            "name": "Nokia",
+            "price": 20000
+        },
+        {
+            "id": 3,
+            "name": "Moto",
+            "price": 15000
+        },
+        {
+            "id": 4,
+            "name": "Redmi",
+            "price": 10000
+        },
+        {
+            "id": 5,
+            "name": "Lenovo",
+            "price": 10000
+        }
+    ] 
+}
