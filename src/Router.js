@@ -6,7 +6,7 @@ import HomePage from './component/homepage';
 const Router = () => (
     <Switch>
         <Route exact path='/' component={HomePage} />
-       
+        {/* <Route exact path='/' component={HomePage} /> */}
     </Switch>
 )
 

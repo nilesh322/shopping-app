@@ -5,6 +5,7 @@ import Router from './Router';
 
 import './App.css';
 import Slider from './component/slider/slider';
+import Header from './component/header';
 
 
 const Navigation = (props) => <nav>
@@ -17,7 +18,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>My Shopping Cart</h1>
+        <Header />
         <Slider />
         <Navigation />
         <Router /> 

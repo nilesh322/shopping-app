@@ -2,6 +2,9 @@ import React from 'react';
 import { Row, Col, Grid, Container } from 'react-bootstrap';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
+import AddButton from './add-button';
+import RemoveButton from './remove-button';
+
 export default class ProductListItem extends React.Component { 
     constructor(props) {
         super(props);
@@ -26,10 +29,29 @@ export default class ProductListItem extends React.Component {
                    <h3>{this.props.product.name}</h3>
                       
                    <div>{this.props.product.price}</div>
-                   <button color="success" onClick={this.toggle}>Description</button>
+                   {/* <button color="success" onClick={this.toggle}>Description</button> */}
                    </Col>
                </Row>
            </Container>
+            <div>
+                <AddButton
+                    cartItem={this.props.cartItem}
+                    product={this.props.product}
+                    addToCart={this.props.addToCart}
+                />
+            </div>
+            <div className='remove-btn'>
+                {
+                    this.props.cartItem ?
+                     
+                    <RemoveButton 
+                        cartItem={this.props.cartItem}
+                        product={this.props.product}
+                        removeFromCart={this.props.removeFromCart}
+                    /> : null
+                }
+            </div>
+
           {this.state.modal ? <Modal isOpen={this.state.modal} toggle={this.toggle}>
                 <ModalHeader>Product Description</ModalHeader>
                 <ModalBody>

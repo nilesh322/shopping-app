@@ -17,3 +17,8 @@ body {
   border: 1px solid gray;
   margin: 5px;
 }
+
+
+.remove-btn {
+  margin-top: 8px;
+}
