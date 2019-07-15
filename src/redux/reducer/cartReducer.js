@@ -10,6 +10,12 @@ const addToCart = (cart, item) => {
         [...cartWithoutItem(cart, item), {...cartItem, quantity: cartItem.quantity + 1}] 
 }
 
+const addSingleToCart = (cart,item) => {
+    const cartSingleItem = itemInCart(cart, item);
+    return cartSingleItem === undefined ? 
+        [ ...cartWithoutItem(cart, item), {...item, quantity: 1} ] : '' 
+}
+
 
 const removeFromCart = (cart, item) => {
     return item.quantity === 1 ? 
@@ -21,6 +27,9 @@ const cartReducer = (state = [], action) => {
     switch (action.type) {
         case 'ADD':
             return addToCart(state, action.payload)
+
+        case 'SINGLE_ITEM_ADD':
+            return addSingleToCart(state, action.payload)
 
         case 'REMOVE':
             // const firstMatchIndex = state.indexOf(action.payload);

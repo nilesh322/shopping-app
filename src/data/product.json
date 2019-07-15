@@ -3,26 +3,31 @@
          {
             "id": 1,
             "name": "Splendor",
+            "image": "splendor.jpg",
             "price": 50000
         },
         {
             "id": 2,
             "name": "Shine",
+            "image": "shine.jpeg",
             "price": 70000
         },
         {
             "id": 3,
             "name": "Pulsar",
+            "image": "pulsar.jpg",
             "price": 80000
         },
         {
             "id": 4,
             "name": "Unicorn",
+            "image": "unicorn.png",
             "price": 100000
         },
         {
             "id": 5,
             "name": "Classic Bullet",
+            "image": "bullet.jpg",
             "price": 150000
         }
     ],

@@ -6,12 +6,26 @@ import Router from './Router';
 import './App.css';
 import Slider from './component/slider/slider';
 import Header from './component/header';
+import Sidebar from './component/sidebar';
 
 
 const Navigation = (props) => <nav>
-  <ul>
-    <li><NavLink to='/'>Home</NavLink></li>
-  </ul>
+       <ul>
+         {/* <li><NavLink to='/'>Home</NavLink></li> */}
+       </ul>
+
+      {/* <div className="container">
+      <div className="row">
+        <div className="col-sm-3">
+         <Sidebar />
+        </div>
+        <div className="col-sm-9">
+        <ul>
+          <li>content</li>
+        </ul>
+        </div>
+      </div>
+    </div> */}
 </nav>
 
 class App extends Component {

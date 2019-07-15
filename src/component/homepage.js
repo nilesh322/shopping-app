@@ -1,12 +1,13 @@
 import React from 'react';
+import { Button } from 'reactstrap';
 import ProductListing from './product-listing';
 import data from '../data/product.json';
 
 export default function Homepage(props) {
     console.log("homepage product", data);
     return <div>
-        <h2>Products</h2>
-        <ProductListing  products ={data.products} />
+        {/* <div><Button className="pull-right">View All</Button></div>  */}
+        <ProductListing  products = {data.products} />
     </div>
 }  
 

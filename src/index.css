@@ -9,11 +9,12 @@ body {
   flex: 1;
   flex-wrap: wrap;
   flex-direction: row;
+  margin-left: 170px;
 }
 
 .product-listing .product-list-item {
   padding: 10px 30px;
-  width: 200px;
+  width: calc(100%/5);;
   border: 1px solid gray;
   margin: 5px;
 }

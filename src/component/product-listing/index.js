@@ -3,6 +3,7 @@ import React from 'react';
 import ProductListItem from './product-list-item';
 import { connect } from 'react-redux';
 
+
 function ProductListing(props) {
     console.log("product listing props", props);
     return(
@@ -14,6 +15,8 @@ function ProductListing(props) {
                     key={key}
                     addToCart={props.addToCart}
                     removeFromCart={props.removeFromCart}
+                    cart={props.cart}
+                    addSingleItemToCart = {props.addSingleItemToCart} 
                     cartItem={props.cart.filter(cartItem => cartItem.id === product.id)[0]}
                 />)
         }
@@ -32,6 +35,9 @@ function mapDispatchToProps(dispatch) {
     return {
         addToCart: (item) => {
             dispatch({ type: 'ADD', payload: item })
+        },
+        addSingleItemToCart: (item) => {
+            dispatch({ type: 'SINGLE_ITEM_ADD', payload: item})
         },
         removeFromCart: (item) => {
             dispatch({ type: 'REMOVE', payload: item })
