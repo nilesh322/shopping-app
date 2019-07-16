@@ -1,61 +1,119 @@
-{
-    "products": [
-         {
-            "id": 1,
-            "name": "Splendor",
-            "image": "splendor.jpg",
-            "price": 50000
-        },
-        {
-            "id": 2,
-            "name": "Shine",
-            "image": "shine.jpeg",
-            "price": 70000
-        },
-        {
-            "id": 3,
-            "name": "Pulsar",
-            "image": "pulsar.jpg",
-            "price": 80000
-        },
-        {
-            "id": 4,
-            "name": "Unicorn",
-            "image": "unicorn.png",
-            "price": 100000
-        },
-        {
-            "id": 5,
-            "name": "Classic Bullet",
-            "image": "bullet.jpg",
-            "price": 150000
-        }
-    ],
-    "Mobile" : [
-        {
-            "id": 1,
-            "name": "Samsung",
-            "price": 10000
-        },
-        {
-            "id": 2,
-            "name": "Nokia",
-            "price": 20000
-        },
-        {
-            "id": 3,
-            "name": "Moto",
-            "price": 15000
-        },
-        {
-            "id": 4,
-            "name": "Redmi",
-            "price": 10000
-        },
-        {
-            "id": 5,
-            "name": "Lenovo",
-            "price": 10000
-        }
-    ] 
-}
+[
+    {
+        "category" : "Bike",
+        "list" : [
+            {
+               "id": 1,
+               "name": "Splendor",
+               "image": "",
+               "price": 50000
+           },
+           {
+               "id": 2,
+               "name": "Shine",
+               "image": "shine.jpeg",
+               "price": 70000
+           },
+           {
+               "id": 3,
+               "name": "Pulsar",
+               "image": "pulsar.jpg",
+               "price": 80000
+           },
+           {
+               "id": 4,
+               "name": "Unicorn",
+               "image": "unicorn.png",
+               "price": 100000
+           },
+           {
+               "id": 5,
+               "name": "Classic Bullet",
+               "image": "bullet.jpg",
+               "price": 150000
+           }
+       ]
+    },
+    {
+        "category" : "Mobile",
+        "list" :  [
+            {
+                "id": 1,
+                "name": "Samsung",
+                "image": "mobile_1.jpg",
+                "price": 10000
+            },
+            {
+                "id": 2,
+                "name": "Nokia",
+                "image": "mobile_2.jpeg",
+                "price": 20000
+            },
+            {
+                "id": 3,
+                "name": "Moto",
+                "image": "mobile_3.jpg",
+                "price": 15000
+            },
+            {
+                "id": 4,
+                "name": "Redmi",
+                "image": "mobile_4.jpeg",
+                "price": 10000
+            },
+            {
+                "id": 5,
+                "name": "Lenovo",
+                "image": "mobile_5.jpeg",
+                "price": 10000
+            },
+            {
+                "id": 6,
+                "name": "Moto",
+                "image": "mobile_6.jpeg",
+                "price": 10000
+            }
+        ]
+    },
+    {
+        "category": "Camera",
+        "list" :  [
+            {
+                "id": 1,
+                "name": "Camera 1",
+                "image": "camera_1.jpg",
+                "price": 10000
+            },
+            {
+                "id": 2,
+                "name": "Camera 2",
+                "image": "camera_2.jpeg",
+                "price": 20000
+            },
+            {
+                "id": 3,
+                "name": "Camera 3",
+                "image": "camera_3.jpeg",
+                "price": 15000
+            },
+            {
+                "id": 4,
+                "name": "Camera 4",
+                "image": "camera_4.jpg",
+                "price": 20000
+            },
+            {
+                "id": 5,
+                "name": "Camera 5",
+                "image": "camera_5.jpeg",
+                "price": 10000
+            },
+            {
+                "id": 6,
+                "name": "Camera 6",
+                "image": "camera_6.jpeg",
+                "price": 30000
+            }
+        ]
+    }
+]

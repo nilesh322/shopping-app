@@ -6,7 +6,7 @@ import Router from './Router';
 import './App.css';
 import Slider from './component/slider/slider';
 import Header from './component/header';
-import Sidebar from './component/sidebar';
+import CategoryBar from './component/categoryBar';
 
 
 const Navigation = (props) => <nav>
@@ -34,7 +34,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <Slider />
-        <Navigation />
+        <CategoryBar />
         <Router /> 
       </div>
     );

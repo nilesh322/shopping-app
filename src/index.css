@@ -14,7 +14,8 @@ body {
 
 .product-listing .product-list-item {
   padding: 10px 30px;
-  width: calc(100%/5);;
+  /* width: calc(100%/5); */
+  width: 300px;
   border: 1px solid gray;
   margin: 5px;
 }
