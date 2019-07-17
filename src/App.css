@@ -25,7 +25,7 @@
 
 .slider {
   position: relative;
-  width: 900px;
+  width: 1000px;
   margin: 20px auto;
   height: 300px;
   overflow: hidden;
@@ -64,6 +64,12 @@
   color: #fff;
 }
 
+.viewMore {
+  float: right;
+  margin-right: 191px;
+  margin-top: -237px;
+}
+
 .backArrow {
   position: absolute;
   top: 50%;
@@ -73,6 +79,6 @@
 }
 
 .fa-arrow-right:before, .fa-arrow-left:before {
-  color: #222
+  color: white;
 }
 

@@ -10,4 +10,4 @@ class ViewMore extends Component{
     }
 }
 
-export default ViewMore
+export default ViewMore;

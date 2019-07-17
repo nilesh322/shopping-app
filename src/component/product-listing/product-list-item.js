@@ -23,7 +23,7 @@ export default class ProductListItem extends React.Component {
                         height={100}
                         title={this.props.product.name}
                         src={this.props.product.image}
-                        style={{marginLeft:'-25px'}}
+                        // style={{marginLeft:'-25px'}}
                     />
                    <h3>{this.props.product.name}</h3>
                       
@@ -50,19 +50,22 @@ export default class ProductListItem extends React.Component {
                     // />  
                 }
                 
-                <div style={{marginTop:'15px'}}>
-                    <table>
-                    <tbody>
-                        <tr>
-                    
-                            <td><button  onClick= {() => this.props.addToCart(this.props.product)} >+</button></td>
-                            <td>{(this.props.cartItem && this.props.cartItem.quantity) || 0 }</td>
-                            <td><button onClick= {() => this.props.removeFromCart(this.props.cartItem)} >-</button></td>
-                       
-                        </tr>
-                    </tbody>
-                    </table>
-                </div>
+               {  
+                   this.props.cartItem &&
+                    <div style={{marginTop:'15px'}}>
+                        <table>
+                            <tbody>
+                                <tr>
+                            
+                                    <td><button  onClick= {() => this.props.addToCart(this.props.product)} >+</button></td>
+                                    <td>{(this.props.cartItem && this.props.cartItem.quantity) || 0 }</td>
+                                    <td><button onClick= {() => this.props.removeFromCart(this.props.cartItem)} >-</button></td>
+                            
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                }
             </div>}
         </div > 
         )

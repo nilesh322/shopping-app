@@ -13,6 +13,7 @@ export default function Homepage(props) {
                     products = {data[keyName]} 
                     display={3} 
                     {...props}
+                    keyIndex={keyIndex}
                 />
                 </div>
             })}

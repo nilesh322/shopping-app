@@ -35,14 +35,14 @@ function ProductListing(props) {
                         removeFromCart={props.removeFromCart}
                         cart={props.cart}
                         addSingleItemToCart = {props.addSingleItemToCart} 
-                        cartItem={props.cart.filter(cartItem => cartItem.category == props.category && cartItem.id === product.id)[0]}
+                        cartItem={props.cart.filter(cartItem => cartItem.category === props.category && cartItem.id === product.id)[0]}
                     />}
                     }
                  )}
                 
                  {/* <p onClick={()=>props.history.push('/viewmore',{data:props.products})}>View More</p> */}
         </div>
-         <Button onClick={()=>props.history.push('/viewmore',{data:props.products})} style={{float: "right", marginRight: "35px"}}>
+         <Button onClick={()=>props.history.push('/viewmore',{data:props.products})}  className="viewMore">
          View More
          </Button>
      </div>
@@ -58,6 +58,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         addToCart: (item) => {
+            console.log(item);
             dispatch({ type: 'ADD', payload: item })
         },
         addSingleItemToCart: (item) => {

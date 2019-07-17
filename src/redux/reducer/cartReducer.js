@@ -1,9 +1,11 @@
 
 
 const itemInCart = (cart, item) => cart.filter(cartItem => cartItem.category === item.category && cartItem.id === item.id)[0];
+const cartWithoutItem =(cart, item)  => cart.filter(cartItem => cartItem.id !== item.id);
 
 const addToCart = (cart, item) => {
     const cartItem = itemInCart(cart, item);
+    console.log("cart item ", cartItem);
     if(cartItem){
         var i = cart.indexOf(cartItem)
         cart[i].quantity++;
@@ -29,6 +31,16 @@ const removeFromCart = (cart, item) => {
     return [...cart]
 }
 
+const removeAllFromCart = (cart, item) => {
+    const cartItem = itemInCart(cart, item);
+    if(cartItem) {
+        var i = cart.indexOf(cartItem);
+        cart.splice(i, 1);
+    }
+    return [...cart]
+    // return [...cartWithoutItem(cart, item)]
+}
+
 const cartReducer = (state = [], action) => {
     switch (action.type) {
         case 'ADD':
@@ -40,7 +52,9 @@ const cartReducer = (state = [], action) => {
         case 'REMOVE':
             // const firstMatchIndex = state.indexOf(action.payload);
             return removeFromCart(state, action.payload)
-            // state.filter((item, index) => item !== firstMatchIndex) 
+            // state.filter((item, index) => item !== firstMatchIndex)
+        case 'REMOVE_ALL':
+            return removeAllFromCart(state, action.payload)  
 
         default:
             return state;

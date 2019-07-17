@@ -26,63 +26,63 @@
 		"price": 150000
 	}],
 	"Mobile": [{
-		"id": 1,
+		"id": 6,
 		"name": "Samsung",
 		"image": "./Mobile/mobile_1.jpg",
 		"price": 10000
 	}, {
-		"id": 2,
+		"id": 7,
 		"name": "Nokia",
 		"image": "./Mobile/mobile_2.jpeg",
 		"price": 20000
 	}, {
-		"id": 3,
+		"id": 8,
 		"name": "Moto",
 		"image": "./Mobile/mobile_3.jpg",
 		"price": 15000
 	}, {
-		"id": 4,
+		"id": 9,
 		"name": "Redmi",
 		"image": "./Mobile/mobile_4.jpeg",
 		"price": 10000
 	}, {
-		"id": 5,
+		"id": 10,
 		"name": "Lenovo",
 		"image": "./Mobile/mobile_5.jpeg",
 		"price": 10000
 	}, {
-		"id": 6,
+		"id": 11,
 		"name": "Moto",
 		"image": "./Mobile/mobile_6.jpeg",
 		"price": 10000
 	}],
 	"Camera": [{
-		"id": 1,
+		"id": 12,
 		"name": "Canon",
 		"image": "./Camera/camera_1.jpg",
 		"price": 10000
 	}, {
-		"id": 2,
+		"id": 13,
 		"name": "Nikon ",
 		"image": "./Camera/camera_2.jpeg",
 		"price": 20000
 	}, {
-		"id": 3,
+		"id": 14,
 		"name": "Sony",
 		"image": "./Camera/camera_3.jpeg",
 		"price": 15000
 	}, {
-		"id": 4,
+		"id": 15,
 		"name": "Casio",
 		"image": "./Camera/camera_4.jpg",
 		"price": 20000
 	}, {
-		"id": 5,
+		"id": 16,
 		"name": "Panasonic",
 		"image": "./Camera/camera_5.jpg",
 		"price": 10000
 	}, {
-		"id": 6,
+		"id": 17,
 		"name": "Pentax",
 		"image": "./Camera/camera_6.jpg",
 		"price": 30000
