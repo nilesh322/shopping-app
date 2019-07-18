@@ -1,4 +1,4 @@
-
+const data = {};
 
 const itemInCart = (cart, item) => cart.filter(cartItem => cartItem.category === item.category && cartItem.id === item.id)[0];
 const cartWithoutItem =(cart, item)  => cart.filter(cartItem => cartItem.id !== item.id);
@@ -54,7 +54,11 @@ const cartReducer = (state = [], action) => {
             return removeFromCart(state, action.payload)
             // state.filter((item, index) => item !== firstMatchIndex)
         case 'REMOVE_ALL':
-            return removeAllFromCart(state, action.payload)  
+            return removeAllFromCart(state, action.payload) 
+
+        case 'ADD_TO_DATA':
+            state = action.payload;
+            return state 
 
         default:
             return state;
