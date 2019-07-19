@@ -1,12 +1,13 @@
 import React from 'react';
 import { Container,Table, Row, Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import ProductTable from './productTable';
 
 //redux
 import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
 import { productData } from '../../redux/action/productAction';
 
-
+var imageSourceCode
 class ProductForm extends React.Component {
     constructor(props) {
         super(props);
@@ -30,14 +31,10 @@ class ProductForm extends React.Component {
             "brand": brand,
             "productName": productName,
             "price": price,
-            "image": image,
+            "image": imageSourceCode,
             "description": description
+            
         }
-
-        // let tempdata = [];
-        // tempdata.push(product_data);
-        console.log("product obj", product_data);
-
         this.setState({
             data:product_data
         })
@@ -46,25 +43,34 @@ class ProductForm extends React.Component {
     }
 
     handlePriceChange = (e) => {
-        // const re =/^[0-9\b]+$/;
-        // let value=  event.target.value;
-        // console.log("change", value)
-
-        // if ( re.test(value)) { 
-        //     console.log("change1", value)
-        //     this.setState({
-        //         price:value || ''
-        //     })
-        // }
+      console.log("value", Number(e.target.value),0);
         const re = /^[0-9\b]+$/;
-        if (  e.target.value>0 || e.target.value === '' || re.test(e.target.value)) {
+        if (  Number(e.target.value) > 0 && (e.target.value === '' || re.test(e.target.value))) {
            this.setState({price: e.target.value || ''})
         }
-        // nChange={event => this.setState({financialGoal: event.target.value.replace(/\D/,'')})}
-
     }
 
+    handleFileChange = (e) => {
+      
+            var file    = document.querySelector('input[type=file]').files[0];
+            var reader  = new FileReader();
 
+            reader.addEventListener("load", function () {
+                imageSourceCode = reader.result;
+            }, false);
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        // let files = e.target.files;
+        // this.setState({
+        //     image: files
+        // })
+
+        
+    }
+
+     
    
     handleChange =(event) => {
         this.setState({
@@ -128,9 +134,9 @@ class ProductForm extends React.Component {
                         <FormGroup row>
                             <Label for="price" sm={2}>Product Price</Label>
                             <Col sm={8}>
-                                <Input  name="price" id="price"         placeholder="Enter price" required
+                                <Input name="price" id="price"         placeholder="Enter price" required
                                     
-                                    onChange={this.handlePriceChange}
+                                    onChange={(e) => this.handlePriceChange(e)}
                                     value={price} 
                                 />
                             </Col>
@@ -139,8 +145,7 @@ class ProductForm extends React.Component {
                             <Label for="image" sm={2}>Product Image</Label>
                             <Col sm={8}>
                                 <Input type="file" name="image" id="image" 
-                                onChange={this.handleChange} 
-                                value={image} 
+                                onChange={this.handleFileChange} 
                                 />
                                 <FormText color="muted">
                                  Please select product image here.
@@ -164,34 +169,10 @@ class ProductForm extends React.Component {
                     </Form>
                 </Col>
             </Row>
-            <Row>
-                <Table >
-                    <thead>
-                        <tr>
-                            <th>Category</th>
-                            <th>Brand</th>
-                            <th>ProductName</th>               
-                            <th>Price</th>
-                            <th>Image</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            this.props.product.data && this.props.product.data.map(item => <tr>
-                                <td>{item.category}</td>
-                                <td>{item.brand}</td>
-                                <td>{item.productName}</td>
-                                <td>{item.price}</td>
-                                <td>{item.image}</td>
-                                 <td>{item.description}</td>
-                            </tr>)
-                        }
-                       
-                    </tbody>
-                </Table>
-                
-        </Row>
+                <ProductTable 
+                    data={this.props.product.data}
+                    imageSourceCode={this.imageSourceCode}
+                />
              </Container> 
             
         </div>

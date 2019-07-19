@@ -12,7 +12,7 @@ class Cart extends React.Component {
         return (this.props.cart.map(({price,quantity}) => price * quantity)).reduce((a,b) => a + b, 0);
     }
     render() {
-        return (<div>
+        return (<div className="cart">
 
             <Container>
             <Table >
@@ -37,7 +37,11 @@ class Cart extends React.Component {
                     </tr>)
                 }
                 <tr>
-                    <td><b>Total Price: </b>{this.getTotal()}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><b>Total : </b>{this.getTotal()}</td>
                 </tr>
             </tbody>
         </Table>

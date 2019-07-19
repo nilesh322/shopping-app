@@ -1,11 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import ProductListing from './product-listing';
 import data from '../data/product1.json';
 
 export default function Homepage(props) {
     console.log("homepage product", data);
-    // this.props.addToData(data);
 
     return <div>
         <div>
@@ -24,21 +22,3 @@ export default function Homepage(props) {
         
     </div>
 }  
-
-// function mapStateToProps(state) {
-//     return {
-//         cart: state.data
-//     }
-// }
-
-// function mapDispatchToProps(dispatch) {
-//     return {
-//         addToData: (item) => {
-//             console.log(item);
-//             dispatch({ type: 'ADD_TO_DATA', payload: item })
-//         }
-       
-//     }
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

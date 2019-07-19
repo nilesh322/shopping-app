@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 
 import ProductListItem from './product-list-item';
 import { connect } from 'react-redux';
@@ -6,47 +6,55 @@ import {Link} from 'react-router-dom';
 import { Button } from 'reactstrap';
 
 
-function ProductListing(props) {
-    console.log("product listing props", props);
+class ProductListing extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+         };
+    }
+    render() {
+
+    console.log("product listing props", this.props);
     return(
         <div>
-        <div className='product-listing'>
-        {!props.display?
-            props.products.map((product, key) =>
-                <ProductListItem
-                    product={product}
-                    hideControl={false}
-                    category= {props.category}
-                    key={key}
-                    addToCart={props.addToCart}
-                    removeFromCart={props.removeFromCart}
-                    cart={props.cart}
-                    addSingleItemToCart = {props.addSingleItemToCart} 
-                    cartItem={props.cart.filter(cartItem => cartItem.category == props.category && cartItem.id === product.id)[0]}
-                />):
-                 props.products.map((product, key) =>{
-                    if(key < props.display){
-                        return <ProductListItem
-                        hideControl={true}
+            <div className='product-listing'>
+            {!this.props.display?
+                this.props.products.map((product, key) =>
+                    <ProductListItem
                         product={product}
-                        category= {props.category}
+                        hideControl={false}
+                        category= {this.props.category}
                         key={key}
-                        addToCart={props.addToCart}
-                        removeFromCart={props.removeFromCart}
-                        cart={props.cart}
-                        addSingleItemToCart = {props.addSingleItemToCart} 
-                        cartItem={props.cart.filter(cartItem => cartItem.category === props.category && cartItem.id === product.id)[0]}
-                    />}
+                        addToCart={this.props.addToCart}
+                        removeFromCart={this.props.removeFromCart}
+                        cart={this.props.cart}
+                        addSingleItemToCart = {this.props.addSingleItemToCart} 
+                        cartItem={this.props.cart.filter(cartItem => cartItem.category == this.props.category && cartItem.id === product.id)[0]}
+                    />):
+                    this.props.products.map((product, key) =>{
+                        if(key < this.props.display){
+                            return <ProductListItem
+                            hideControl={true}
+                            product={product}
+                            category= {this.props.category}
+                            key={key}
+                            addToCart={this.props.addToCart}
+                            removeFromCart={this.props.removeFromCart}
+                            cart={this.props.cart}
+                            addSingleItemToCart = {this.props.addSingleItemToCart} 
+                            cartItem={this.props.cart.filter(cartItem => cartItem.category === this.props.category && cartItem.id === product.id)[0]}
+                        />
                     }
-                 )}
-                
-                 {/* <p onClick={()=>props.history.push('/viewmore',{data:props.products})}>View More</p> */}
-        </div>
-         <Button onClick={()=>props.history.push('/viewmore',{data:props.products})}  className="viewMore">
-         View More
-         </Button>
+                        }
+                    )}
+                    
+            </div>
+            {this.props.display ? <Button onClick={()=>this.props.history.push('/viewmore',{data:this.props.products})}  className="viewMore">
+            View More
+            </Button> : null}
      </div>
     )
+    }
 }
 
 function mapStateToProps(state) {
@@ -58,7 +66,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         addToCart: (item) => {
-            console.log(item);
             dispatch({ type: 'ADD', payload: item })
         },
         addSingleItemToCart: (item) => {
