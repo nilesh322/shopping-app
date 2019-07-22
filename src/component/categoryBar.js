@@ -9,23 +9,13 @@ export default class CategoryBar extends React.Component{
         return (
            <Navbar bg="dark" variant="dark" style={{ margin: "auto", width: "1000px" }}>
               <Navbar.Brand>
-                {/* <a href="#">Category</a> */}
-                
               </Navbar.Brand>
               <Nav className="mr-auto">
                <Link style={{color: "white"}} to='/' >Home {"  "}
                </Link>
                 <Link style={{color: "white", marginLeft:"10px"}} to='/addproduct' >Add-Product
                </Link>
-                {/* <Nav.Link href="#">Bike</Nav.Link>
-                <Nav.Link href="#">Mobile</Nav.Link>
-                <Nav.Link href="#">Camera</Nav.Link> */}
               </Nav>
-            {/* <Nav>
-              <NavItem href="#">
-                Byke
-              </NavItem>
-            </Nav> */}
           </Navbar>
         );
     }

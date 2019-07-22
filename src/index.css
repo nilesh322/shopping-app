@@ -25,3 +25,10 @@ body {
 .remove-btn {
   margin-top: 8px;
 }
+.custom-css {
+  position: relative;
+}
+.custom-css .viewMore{
+  position: absolute;
+  top: 0;
+}

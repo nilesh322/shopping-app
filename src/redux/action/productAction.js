@@ -8,3 +8,11 @@ export function productData(data) {
         payload: data,
     };
 }
+
+export function getproductList(data) {
+    console.log("getproductList action", data);
+     return {
+         type: types.GET_PRODUCT_LIST,
+         payload: data,
+     };
+ }
