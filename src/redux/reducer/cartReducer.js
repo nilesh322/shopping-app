@@ -5,7 +5,7 @@ const cartWithoutItem =(cart, item)  => cart.filter(cartItem => cartItem.id !== 
 
 const addToCart = (cart, item) => {
     const cartItem = itemInCart(cart, item);
-    console.log("cart item ", cartItem);
+    debugger;
     if(cartItem){
         var i = cart.indexOf(cartItem)
         cart[i].quantity++;
@@ -44,9 +44,6 @@ const removeAllFromCart = (cart, item) => {
 const cartReducer = (state = [], action) => {
     switch (action.type) {
         case 'ADD':
-            return addToCart(state, action.payload)
-
-        case 'SINGLE_ITEM_ADD':
             return addToCart(state, action.payload)
 
         case 'REMOVE':

@@ -10,8 +10,6 @@ export default class ProductListItem extends React.Component {
     }
 
     render() {
-        console.log("product props", this.props);
-        
         return (
             <div className='product-list-item'>
             <Container>
@@ -40,12 +38,11 @@ export default class ProductListItem extends React.Component {
                         cartItem={this.props.cartItem}
                         product={this.props.product}
                         category={this.props.category}
-                        addSingleItemToCart={this.props.addSingleItemToCart}
+                        addToCart={this.props.addToCart}
                     /> 
                    
                 }
-                
-               {  
+               { 
                    this.props.cartItem &&
                     <div style={{marginTop:'15px'}}>
                         <table>

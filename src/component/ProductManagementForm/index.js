@@ -6,8 +6,9 @@ import ProductTable from './productTable';
 import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
 import { productData } from '../../redux/action/productAction';
+import {API,BASE_URL} from '../API/api';
 
-var imageSourceCode
+var imageSourceCode;
 class ProductForm extends React.Component {
     constructor(props) {
         super(props);
@@ -17,11 +18,33 @@ class ProductForm extends React.Component {
             brand: '',
             productName: '',
             price: '',
-            image: '',
+            image: [],
             description: ''
 
         }
+
+        this.resposeStandard = {
+            error: err => {
+                console.log('err=>', err);
+            },
+            complete: () => {
+                console.log('complete=>');
+            },
+        };
+
+        this.productResponse = Object.assign({}, this.resposeStandard, {
+            success: response => {
+                console.log("response", response)
+                //  this.props.getproductList(response);
+            },
+        }); 
+
     }
+
+    componentDidMount() {
+        // API.setProduct(this.productResponse, '', BASE_URL);
+    }
+
 
     handleFormSubmit = (event) => {
         event.preventDefault();
@@ -38,14 +61,16 @@ class ProductForm extends React.Component {
         this.setState({
             data:product_data
         })
-        console.log("datattttt", data)
+        console.log("datax", data, BASE_URL)
         this.props.productData(product_data);
+        API.setProduct(this.productResponse, product_data, BASE_URL,'');
+        debugger
     }
 
     handlePriceChange = (e) => {
       console.log("value", Number(e.target.value),0);
         const re = /^[0-9\b]+$/;
-        if (  Number(e.target.value) > 0 && (e.target.value === '' || re.test(e.target.value))) {
+        if ( Number(e.target.value) > 0 && (e.target.value === '' || re.test(e.target.value))) {
            this.setState({price: e.target.value || ''})
         }
     }
@@ -62,13 +87,11 @@ class ProductForm extends React.Component {
             if (file) {
                 reader.readAsDataURL(file);
             }
-        // let files = e.target.files;
-        // this.setState({
-        //     image: files
-        // })
-
-        
-    }
+            // let files = e.target.files;
+            // this.setState({
+            //     image: files
+            // })
+        }
 
      
    
@@ -96,8 +119,11 @@ class ProductForm extends React.Component {
                                     id="category"
                                     required
                                     onChange={this.handleChange}
-                                     value={category} 
+                                    value={category} 
                                 >
+                                 {/* {this.props.getProductList.map((category, keyIndex) => {
+                                     <option value={category.name} >{category.name}</option>
+                                 })} */}
                                     <option value="">Select category</option>
                                     <option value="bike">Bike</option>
                                     <option value="mobile">Mobile</option>
@@ -182,8 +208,8 @@ class ProductForm extends React.Component {
 
 
 const mapStateToProps = (state) => {
-    const { product } = state;
-    return { product };
+    const { product, getProductList } = state;
+    return { product, getProductList };
 };
 
 const mapDispatchToProps = dispatch => (

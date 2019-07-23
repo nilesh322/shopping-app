@@ -6,7 +6,6 @@ import { Navbar, Nav, Form, FormControl,Button ,MenuItem,Glyphicon } from 'react
 
 class Header extends React.Component {
   render() {
-    console.log("header props", this.props);
     return (
         <div>
           <Navbar bg="dark" variant="dark">

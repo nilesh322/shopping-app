@@ -3,6 +3,7 @@ import ProductListing from './product-listing';
 import data from '../data/product1.json';
 import {API,BASE_URL} from '../component/API/api';
 import { Button } from 'reactstrap';
+import {  Redirect,Link } from "react-router";
 
 //redux
 import { bindActionCreators } from "redux";
@@ -27,7 +28,6 @@ import { getproductList } from '../redux/action/productAction';
 
         this.productResponse = Object.assign({}, this.resposeStandard, {
             success: response => {
-                console.log("home product list", response);
                  this.props.getproductList(response);
             },
         }); 
@@ -42,20 +42,20 @@ import { getproductList } from '../redux/action/productAction';
         let dataList = this.props.getProductList; 
         return (
             <div>
-                    { dataList.map(function(category, keyIndex) {
-                        return( <div>
+                    { dataList.map((category, keyIndex)=> {
+                        return( <div key={category._id}>
                             <h3 style={{marginLeft: "170px",marginTop: "8px"}}>{category.name}
                             
-                            <Button onClick={()=>this.props.history.push('/viewmore',{data:this.props.products})}  className="viewMore">
+                            <Button onClick={()=>this.props.history.push('/viewmore/'+ category._id)}  className="viewMore">
                                 View More
                             </Button> 
-                            
+
                             </h3>
                             <ProductListing
+                                {...this.props}
                                 category = {category.name} 
                                 products = {dataList[keyIndex].brands} 
                                 display={3} 
-                                // {...this.props}
                                 keyIndex={keyIndex}
                             />
                         </div>)
@@ -78,5 +78,3 @@ const mapDispatchToProps = dispatch => (
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);
-
-// export default Homepage;

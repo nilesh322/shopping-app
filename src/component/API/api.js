@@ -1,5 +1,6 @@
 export const BASE_URL = 'http://sandip-shopping-app.herokuapp.com/api'; 
 const PRODUCTS_URL = '/categories/dashboard-products';
+const ADD_PRODUCT_URL = '/products';
 
 const buildHeader = (token) => {
     var header = {
@@ -16,8 +17,8 @@ export const API = {
     getProduct: (onResponse, data, BASE_URL, token) => {
         request(onResponse, data, 'GET', BASE_URL + PRODUCTS_URL, token);
     },
-    setProduct: (onResponse, data, BASE_URL) => {
-        request(onResponse, data, 'POST', BASE_URL + PRODUCTS_URL);
+    setProduct: (onResponse, data, BASE_URL, token) => {
+        request(onResponse, data, 'POST', BASE_URL + ADD_PRODUCT_URL, token);
     }
 };
 
@@ -33,16 +34,14 @@ async function request(onResponse, data, type, featureURL, token, requestNumber)
             });
 
             var responseJSON = await response.json();
-            console.log('api ResData', responseJSON);
             responseJSON.requestNumber = requestNumber
             if (responseJSON) {
-                console.log("api responseJSON",responseJSON);
                 onResponse.success(responseJSON);
             } else {
-                console.log("api responseJSON error",responseJSON);
                 onResponse.error(responseJSON);
             }
         } else {
+            console.log("post function")
             response = await fetch(featureURL, {
                 method: type,
                 headers: headers,

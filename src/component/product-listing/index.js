@@ -2,7 +2,6 @@ import React,{Component} from 'react';
 
 import ProductListItem from './product-list-item';
 import { connect } from 'react-redux';
-import {Link} from 'react-router-dom';
 import { Button } from 'reactstrap';
 
 class ProductListing extends Component {
@@ -27,10 +26,10 @@ class ProductListing extends Component {
                             key={key}
                             addToCart={this.props.addToCart}
                             removeFromCart={this.props.removeFromCart}
-                            cart={this.props.cart}
-                            addSingleItemToCart = {this.props.addSingleItemToCart} 
+                            cart={this.props.cart} 
                             cartItem={this.props.cart.filter(cartItem => cartItem.category == this.props.category && cartItem.id === product.id)[0]}
                         />):
+
                         this.props.products.map((product, key) => {
                             if(key < this.props.display) {
                                 return <ProductListItem
@@ -41,7 +40,7 @@ class ProductListing extends Component {
                                 addToCart={this.props.addToCart}
                                 removeFromCart={this.props.removeFromCart}
                                 cart={this.props.cart}
-                                addSingleItemToCart = {this.props.addSingleItemToCart} 
+                              
                                 cartItem={this.props.cart.filter(cartItem => cartItem.category === this.props.category && cartItem.id === product.id)[0]}
                             />
                         }
@@ -49,15 +48,6 @@ class ProductListing extends Component {
                         )}
                         
                 </div>
-                {/* {this.props.display ? 
-                    <Button onClick={()=>this.props.history.push('/viewmore',{data:this.props.products})}  className="viewMore">
-                    View More
-                    </Button>  */}
-
-                  {/* <Link style={{color: "white", marginLeft:"10px"}} to='/product-listing' >Add-Product
-                      </Link> */}
-                
-                {/* : null} */}
         </div>
         )
     }
@@ -65,17 +55,16 @@ class ProductListing extends Component {
 
 function mapStateToProps(state) {
     return {
-        cart: state.cart
+        cart: state.cart,
+        getProductList: state.getProductList
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         addToCart: (item) => {
+            console.log("add to cart action", item)
             dispatch({ type: 'ADD', payload: item })
-        },
-        addSingleItemToCart: (item) => {
-            dispatch({ type: 'SINGLE_ITEM_ADD', payload: item})
         },
         removeFromCart: (item) => {
             dispatch({ type: 'REMOVE', payload: item })

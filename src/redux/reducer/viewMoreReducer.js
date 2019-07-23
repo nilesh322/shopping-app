@@ -1,9 +1,9 @@
 import * as types from '../types';
 
-const PRODUCT_LIST = []
-const  ProductList = (state = PRODUCT_LIST, action) => {
+const MORE_DATA = []
+const  viewMoreReducer = (state = MORE_DATA, action) => {
     switch (action.type) {
-        case types.GET_PRODUCT_LIST:
+        case types.GET_MORE_DATA:
             state = action.payload.data;
             return state;
         default:
@@ -11,4 +11,4 @@ const  ProductList = (state = PRODUCT_LIST, action) => {
     }
 }
 
-export default ProductList;
+export default viewMoreReducer;
