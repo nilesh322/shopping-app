@@ -2,7 +2,6 @@ import React from 'react';
 import '../../App.css';
 
 const Slide = ({ image }) => {
-    console.log("slide image", image)
     const styles = {
       backgroundImage: `url(${image})`,
       backgroundSize: 'cover',

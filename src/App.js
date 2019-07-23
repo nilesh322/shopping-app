@@ -1,44 +1,38 @@
 import React, { Component } from 'react';
-
-import { NavLink } from 'react-router-dom';
-import Router from './Router';
+// import Router from './Router';
+import { Switch, Route } from 'react-router-dom';
+import {withRouter } from "react-router";
 
 import './App.css';
 import Slider from './component/slider/slider';
+import CategoryBar from './component/categoryBar';
+import ViewMore from '../src/component/ViewMore';
+import HomePage from './component/homepage';
+import Cart from './component/cart/index'
 import Header from './component/header';
-import Sidebar from './component/sidebar';
+import Product from './component/ProductManagementForm/index';
+import productListing from './component/product-listing';
 
-
-const Navigation = (props) => <nav>
-       <ul>
-         {/* <li><NavLink to='/'>Home</NavLink></li> */}
-       </ul>
-
-      {/* <div className="container">
-      <div className="row">
-        <div className="col-sm-3">
-         <Sidebar />
-        </div>
-        <div className="col-sm-9">
-        <ul>
-          <li>content</li>
-        </ul>
-        </div>
-      </div>
-    </div> */}
-</nav>
 
 class App extends Component {
+
   render() {
     return (
       <div className="App">
         <Header />
         <Slider />
-        <Navigation />
-        <Router /> 
+        <CategoryBar /> 
+        <Switch>
+          <Route exact path='/' component={HomePage} />
+          <Route  path='/cart' component={Cart}/> 
+          <Route  path='/viewmore/:id' component={ViewMore}/>
+          <Route path='/addproduct' component={Product} />
+          <Route path='/product-listing' component={productListing} />        
+        </Switch>
       </div>
     );
   }
 }
 
 export default App;
+

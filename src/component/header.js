@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import { Navbar, Nav, Form, FormControl,Button ,MenuItem,Glyphicon } from 'react-bootstrap';
 
 class Header extends React.Component {
@@ -7,34 +9,32 @@ class Header extends React.Component {
     return (
         <div>
           <Navbar bg="dark" variant="dark">
-            <i className="fa fa-envelope fa-fw"></i> 
-            <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+            {/* <i className="fa fa-envelope fa-fw"></i>  */}
+            <Navbar.Brand>Shopping Cart</Navbar.Brand>
             <Nav className="mr-auto">
-              <Nav.Link href="#home">Product</Nav.Link>
+              {/* <Nav.Link href="#home">Product</Nav.Link> */}
             </Nav>
-            {/* <li>
-              <span class="glyphicon glyphicon-shopping-cart"></span><br/>
-              <span class="glyphicon-class">glyphicon glyphicon-shopping-cart</span>
-            </li> */}
-        
+            <Nav>
+              {/* <span style={{color: "white", margin: "auto"}}>{this.props.cart && this.props.cart.length}</span> */}
+               {/* <Nav.Link  onClick={()=>browserHistory.push('/cart')} ><i className="glyphicon glyphicon-shopping-cart"></i> Cart </Nav.Link> */}
+               
+               <Link style={{color: "white", margin: "auto"}} to='/cart' className='cart-button'>
+                Cart ({this.props.cart && this.props.cart.length})
+               </Link>
+               {/* <button onClick={this.renderCard}>CardfAAA</button> */}
+            </Nav>
           </Navbar>
-
-            {/* <nav className="nav-wrapper">
-                <div className="container">
-                    <Link to="/" className="brand-logo">Shopping</Link>
-                    
-                    <ul className="right">
-                        <li><Link to="/">Shop</Link></li>
-                        <li><Link to="/cart">My cart</Link></li>
-                        <li><Link to="/cart"><i className="material-icons">shopping_cart</i></Link></li>
-                    </ul>
-                </div>
-            </nav>   */}
 
       </div>
     );
   }
 }
 
+function mapStateToProps(state) {
+  return {
+      cart: state.cart
+  }
+}
 
-export default Header;
+export default connect(mapStateToProps)(Header);
+
