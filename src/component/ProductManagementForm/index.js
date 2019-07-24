@@ -18,7 +18,7 @@ class ProductForm extends React.Component {
             brand: '',
             productName: '',
             price: '',
-            image: [],
+            images: [],
             description: ''
 
         }
@@ -48,23 +48,22 @@ class ProductForm extends React.Component {
 
     handleFormSubmit = (event) => {
         event.preventDefault();
-        const {data, category, brand, productName, price, image, description} = this.state;
-        let product_data = {
+        const {data, category, brand, productName, price, images, description} = this.state;
+        let request_obj = {
             "category": category,
             "brand": brand,
-            "productName": productName,
+            "name": productName,
             "price": price,
-            "image": imageSourceCode,
+            "images": imageSourceCode,
             "description": description
             
         }
         this.setState({
-            data:product_data
+            data:request_obj
         })
         console.log("datax", data, BASE_URL)
-        this.props.productData(product_data);
-        API.setProduct(this.productResponse, product_data, BASE_URL,'');
-        debugger
+        this.props.productData(request_obj);
+        API.setProduct(this.productResponse, request_obj, BASE_URL,'');
     }
 
     handlePriceChange = (e) => {
@@ -103,7 +102,7 @@ class ProductForm extends React.Component {
 
     render() {
         console.log("data=====", this.props);
-        const {category, brand, productName, price, image, description} = this.state;
+        const {category, brand, productName, price, images, description} = this.state;
       return (
         <div className="productForm">
             <Container>

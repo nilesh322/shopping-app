@@ -10,7 +10,9 @@ class Header extends React.Component {
         <div>
           <Navbar bg="dark" variant="dark">
             {/* <i className="fa fa-envelope fa-fw"></i>  */}
-            <Navbar.Brand>Shopping Cart</Navbar.Brand>
+            <Navbar.Brand >
+              <Link style={{textDecoration: 'none', color: 'white'}} to='/'> Shopping Cart</Link>
+            </Navbar.Brand>
             <Nav className="mr-auto">
               {/* <Nav.Link href="#home">Product</Nav.Link> */}
             </Nav>
@@ -21,7 +23,6 @@ class Header extends React.Component {
                <Link style={{color: "white", margin: "auto"}} to='/cart' className='cart-button'>
                 Cart ({this.props.cart && this.props.cart.length})
                </Link>
-               {/* <button onClick={this.renderCard}>CardfAAA</button> */}
             </Nav>
           </Navbar>
 
