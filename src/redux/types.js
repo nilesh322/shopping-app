@@ -1,3 +1,4 @@
 export const PRODUCT_DATA = 'PRODUCT_DATA';
 export const GET_PRODUCT_LIST = 'GET_PRODUCT_LIST';
 export const GET_MORE_DATA = 'GET_MORE_DATA';
+export const GET_CATEGORY_LIST = 'GET_CATEGORY_LIST';

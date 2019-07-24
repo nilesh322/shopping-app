@@ -10,7 +10,7 @@ export default class ProductListItem extends React.Component {
     }
 
     render() {
-        console.log("product list item props", this.props);
+        // console.log("product list item props", this.props);
         return (
             <div className='product-list-item'>
             <Container>

@@ -5,8 +5,8 @@ import ProductTable from './productTable';
 //redux
 import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
-import { productData } from '../../redux/action/productAction';
-import {API,BASE_URL} from '../API/api';
+import { productData, getCategoryList } from '../../redux/action/productAction';
+import {API,BASE_URL,ADD_PRODUCT_URL} from '../API/api';
 
 var imageSourceCode;
 class ProductForm extends React.Component {
@@ -32,16 +32,23 @@ class ProductForm extends React.Component {
             },
         };
 
-        this.productResponse = Object.assign({}, this.resposeStandard, {
+        this.categoriesResponse = Object.assign({}, this.resposeStandard, {
             success: response => {
-                console.log("response", response)
-                //  this.props.getproductList(response);
+                console.log("response=====", response)
+                this.props.getCategoryList(response);
             },
         }); 
-
+        this.allProductResponse = Object.assign({}, this.resposeStandard, {
+            success: response => {
+                console.log("all product list", response);
+            },
+        }); 
+        
     }
 
     componentDidMount() {
+        API.getCategories(this.categoriesResponse, '', BASE_URL)
+        API.getAllProduct(this.allProductResponse, '', BASE_URL);
         // API.setProduct(this.productResponse, '', BASE_URL);
     }
 
@@ -51,10 +58,12 @@ class ProductForm extends React.Component {
         const {data, category, brand, productName, price, images, description} = this.state;
         let request_obj = {
             "category": category,
+            "category_id": "5d224669ca5bec29abdf23eh",
             "brand": brand,
             "name": productName,
             "price": price,
-            "images": imageSourceCode,
+            // "images": imageSourceCode,
+            // "images": images,
             "description": description
             
         }
@@ -63,18 +72,18 @@ class ProductForm extends React.Component {
         })
         console.log("datax", data, BASE_URL)
         this.props.productData(request_obj);
-        API.setProduct(this.productResponse, request_obj, BASE_URL,'');
+        API.setProduct(this.allProductResponse,JSON.stringify(request_obj), BASE_URL);
     }
 
     handlePriceChange = (e) => {
       console.log("value", Number(e.target.value),0);
         const re = /^[0-9\b]+$/;
-        if ( Number(e.target.value) > 0 && (e.target.value === '' || re.test(e.target.value))) {
+        if ( e.target.value === '' || re.test(e.target.value)) {
            this.setState({price: e.target.value || ''})
         }
     }
 
-    handleFileChange = (e) => {
+    onFileUpload = (e) => {
       
             var file    = document.querySelector('input[type=file]').files[0];
             var reader  = new FileReader();
@@ -86,10 +95,8 @@ class ProductForm extends React.Component {
             if (file) {
                 reader.readAsDataURL(file);
             }
-            // let files = e.target.files;
-            // this.setState({
-            //     image: files
-            // })
+
+            // this.setState({ images: [...this.state.images, ...e.target.files] })
         }
 
      
@@ -119,32 +126,23 @@ class ProductForm extends React.Component {
                                     required
                                     onChange={this.handleChange}
                                     value={category} 
+                                    defaultValue={{ label: "Select Category", value: 0 }}
                                 >
-                                 {/* {this.props.getProductList.map((category, keyIndex) => {
-                                     <option value={category.name} >{category.name}</option>
-                                 })} */}
-                                    <option value="">Select category</option>
-                                    <option value="bike">Bike</option>
-                                    <option value="mobile">Mobile</option>
-                                    <option value="camera">Camera</option>
+                                 { 
+                                     this.props.getProductData &&  this.props.getProductData.map((category, key) => {
+                                    return <option value={category.name} key={key} >{category.name}</option>
+                                    }) 
+                                 }
                                 </Input>
                             </Col>
                         </FormGroup>
                         <FormGroup row>
                             <Label for="brand" sm={2}>Brand</Label>
                             <Col sm={8}>
-                                <Input type="select" 
-                                    name="brand"
-                                    id="brand"
-                                    required
-                                    onChange={this.handleChange}
-                                    value={brand} 
-                                 >
-                                    <option value="">Select brand</option>
-                                    <option value = "splendor">Splendor</option>
-                                    <option value= "shine">Shine</option>
-                                    <option value="nokia">Nokia</option>
-                                </Input>
+                                 <Input type="text" name="brand" required  id="brand" placeholder="Enter brand name"
+                                  onChange={this.handleChange}
+                                  value={brand}
+                                /> 
                             </Col>
                         </FormGroup>
                         <FormGroup row>
@@ -159,19 +157,23 @@ class ProductForm extends React.Component {
                         <FormGroup row>
                             <Label for="price" sm={2}>Product Price</Label>
                             <Col sm={8}>
-                                <Input name="price" id="price"         placeholder="Enter price" required
-                                    
-                                    onChange={(e) => this.handlePriceChange(e)}
-                                    value={price} 
+                                <Input type="number" name="price" id="price"         placeholder="Enter price" required
+                                onChange={(e) => this.handlePriceChange(e)}
+                                value={price} 
                                 />
                             </Col>
                         </FormGroup>
                         <FormGroup row>
                             <Label for="image" sm={2}>Product Image</Label>
                             <Col sm={8}>
+
                                 <Input type="file" name="image" id="image" 
-                                onChange={this.handleFileChange} 
+                                onChange={this.onFileUpload}  multiple
                                 />
+                                {/* <Input type="text" name="image" id="image" 
+                                onChange={this.onFileUpload} 
+                                placeholder="Select image"
+                                /> */}
                                 <FormText color="muted">
                                  Please select product image here.
                                 </FormText>
@@ -181,6 +183,7 @@ class ProductForm extends React.Component {
                             <Label for="description" sm={2}>Product Description</Label>
                             <Col sm={8}>
                                 <Input type="textarea" name="description" id="description"
+                                placeholder="Enter product descrption"
                                  onChange={this.handleChange}
                                  value={description} 
                             />
@@ -207,13 +210,13 @@ class ProductForm extends React.Component {
 
 
 const mapStateToProps = (state) => {
-    const { product, getProductList } = state;
-    return { product, getProductList };
+    const { product, getProductData } = state;
+    return { product, getProductData };
 };
 
 const mapDispatchToProps = dispatch => (
     bindActionCreators({
-        productData
+        productData, getCategoryList
     }, dispatch)
 );
 

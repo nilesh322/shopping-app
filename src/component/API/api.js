@@ -1,13 +1,16 @@
 export const BASE_URL = 'http://sandip-shopping-app.herokuapp.com/api'; 
-const PRODUCTS_URL = '/categories/dashboard-products';
-const ADD_PRODUCT_URL = '/products';
+ const PRODUCTS_URL = '/categories/dashboard-products';
+ const ADD_PRODUCT_URL = '/products';
+const GET_CATEGORIES = '/categories';
+const ALL_PRODUCT_URL = '/products';
 
 const buildHeader = (token) => {
     var header = {
-        //accept: 'application/json',
+        "accept": 'application/json',
+        "Content-Type": 'application/json',
         //'Cache-Control': 'no-cache',
         //'Access-Control-Allow-Origin': 'http://192.168.102.120/api.itelbpo/api',
-        Authorization: 'Bearer ' + token
+        Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMWNiMTZlY2NhMmI5Njg1MzZhYTUyYyIsImlhdCI6MTU2Mzk3MDYxMCwiZXhwIjoxNTY0MDU3MDEwfQ.CV_4QXWZdBdtJIjcNFshEI8eD518Fkjl1_QcIK4kC_8'
     };
 
     return header;
@@ -18,7 +21,16 @@ export const API = {
         request(onResponse, data, 'GET', BASE_URL + PRODUCTS_URL, token);
     },
     setProduct: (onResponse, data, BASE_URL, token) => {
-        request(onResponse, data, 'POST', BASE_URL + ADD_PRODUCT_URL, token);
+        console.log("set product api",onResponse, JSON.stringify(data), BASE_URL, token)
+        request(onResponse, JSON.stringify(data), 'POST', BASE_URL + ADD_PRODUCT_URL, token);
+    },
+
+    getAllProduct: (onResponse, data, BASE_URL, token) => {
+        request(onResponse, data, 'GET', BASE_URL + ALL_PRODUCT_URL, token);
+    },
+
+    getCategories:(onResponse, data, BASE_URL, token) => {
+        request(onResponse, data, 'GET', BASE_URL + GET_CATEGORIES, token);
     }
 };
 
@@ -41,7 +53,6 @@ async function request(onResponse, data, type, featureURL, token, requestNumber)
                 onResponse.error(responseJSON);
             }
         } else {
-            console.log("post function")
             response = await fetch(featureURL, {
                 method: type,
                 headers: headers,

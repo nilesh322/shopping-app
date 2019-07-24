@@ -19,7 +19,7 @@ class ViewMore extends Component{
 
     render() {
         // console.log("view more", this.props);
-        const dataArr = this.props.getProductList;
+        const dataArr = this.props.getProductData;
         const id  = this.props.match.params.id;
         const list = dataArr.find( item => item._id === id);
         return (
@@ -31,8 +31,8 @@ class ViewMore extends Component{
 }
 
 const mapStateToProps = (state,props) => {
-    const { getProductList } = state;
-    return { getProductList };
+    const { getProductData } = state;
+    return { getProductData };
 
 };
 

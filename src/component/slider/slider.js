@@ -8,10 +8,10 @@ import '../../App.css'
 export default class Slider extends Component {
     constructor(props) {
         super(props)
-    
+        
         this.state = {
           images: [
-            "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/aurora.jpg",
+            "https://www.akhandanandbank.com/upload/slider/slider-ecommerce.jpg",  "https://www.inferse.com/wp-content/uploads/2019/05/OnePlus-7-Pro-on-Amazon-640x360.jpg",            "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/aurora.jpg",
             "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/canyon.jpg",
             "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/city.jpg",
             "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/desert.jpg",
