@@ -27,7 +27,7 @@ class ProductListing extends Component {
                             addToCart={this.props.addToCart}
                             removeFromCart={this.props.removeFromCart}
                             cart={this.props.cart} 
-                            cartItem={this.props.cart.filter(cartItem => cartItem.category == this.props.category && cartItem.id === product.id)[0]}
+                            cartItem={this.props.cart.filter(cartItem => cartItem._id === product.product._id)[0]}
                         />):
 
                         this.props.products.map((product, key) => {
@@ -41,7 +41,7 @@ class ProductListing extends Component {
                                 removeFromCart={this.props.removeFromCart}
                                 cart={this.props.cart}
                               
-                                cartItem={this.props.cart.filter(cartItem => cartItem.category === this.props.category && cartItem.id === product.id)[0]}
+                                cartItem={this.props.cart.filter(cartItem => cartItem._id === product.product._id)[0]}
                             />
                         }
                             }

@@ -10,6 +10,7 @@ export default class ProductListItem extends React.Component {
     }
 
     render() {
+        console.log("product list item props", this.props);
         return (
             <div className='product-list-item'>
             <Container>
@@ -33,18 +34,18 @@ export default class ProductListItem extends React.Component {
            {!this.props.hideControl &&
             <div>
                 {
-                    !this.props.cartItem &&
+                   this.props.cart.map(({_id})=>_id).indexOf(this.props.product._id) === -1  &&
+                  
                     <AddButton
                         cartItem={this.props.cartItem}
                         product={this.props.product}
                         category={this.props.category}
                         addToCart={this.props.addToCart}
-                    /> 
-                   
+                    />
                 }
                { 
-                   this.props.cartItem &&
-                    <div style={{marginTop:'15px'}}>
+                    this.props.cart.map(({_id})=>_id).indexOf(this.props.product._id) > -1 &&
+                    <div className="add-table">
                         <table>
                             <tbody>
                                 <tr>

@@ -14,12 +14,11 @@ class ViewMore extends Component{
     }
 
     componentDidMount(){
-        console.log("did mount in virw more", this.props);
+        // console.log("did mount in virw more", this.props);
     }
 
     render() {
-        console.log("view more", this.props);
-        const {data} = this.props.location.state ? this.props.location.state : [];
+        // console.log("view more", this.props);
         const dataArr = this.props.getProductList;
         const id  = this.props.match.params.id;
         const list = dataArr.find( item => item._id === id);
