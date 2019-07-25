@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { Navbar, Nav, Form, FormControl,Button ,MenuItem,Glyphicon } from 'react-bootstrap';
@@ -17,9 +18,10 @@ class Header extends React.Component {
               {/* <Nav.Link href="#home">Product</Nav.Link> */}
             </Nav>
             <Nav>
-              {/* <span style={{color: "white", margin: "auto"}}>{this.props.cart && this.props.cart.length}</span> */}
-               {/* <Nav.Link  onClick={()=>browserHistory.push('/cart')} ><i className="glyphicon glyphicon-shopping-cart"></i> Cart </Nav.Link> */}
-               
+              <Link className="login-logo" to="/login">
+              Login</Link> 
+            </Nav>
+            <Nav>
                <Link style={{color: "white", margin: "auto"}} to='/cart' className='cart-button'>
                 Cart ({this.props.cart && this.props.cart.length})
                </Link>

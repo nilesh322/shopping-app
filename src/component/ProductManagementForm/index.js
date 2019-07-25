@@ -14,7 +14,10 @@ class ProductForm extends React.Component {
         super(props);
         this.state={
             data: [],
-            category: '',
+            category: {
+                category_name:'',
+                category_id: ''
+            },
             brand: '',
             productName: '',
             price: '',
@@ -55,10 +58,11 @@ class ProductForm extends React.Component {
 
     handleFormSubmit = (event) => {
         event.preventDefault();
-        const {data, category, brand, productName, price, images, description} = this.state;
+        const {data,category, brand, productName, price, images, description} = this.state;
         let request_obj = {
-            "category": category,
-            "category_id": "5d224669ca5bec29abdf23eh",
+            "category_id": category.category_id,
+            "category": category.category_name,
+            // "category_id": "5d224669ca5bec29abdf23es",
             "brand": brand,
             "name": productName,
             "price": price,
@@ -70,7 +74,7 @@ class ProductForm extends React.Component {
         this.setState({
             data:request_obj
         })
-        console.log("datax", data, BASE_URL)
+        console.log("datax", data, )
         this.props.productData(request_obj);
         API.setProduct(this.allProductResponse,JSON.stringify(request_obj), BASE_URL);
     }
@@ -107,8 +111,19 @@ class ProductForm extends React.Component {
         })
     }
 
+    handleCategoryChange=(event) => {
+        console.log("category", event.target.name);
+        this.setState({
+            category: {
+                category_name:event.target.name,
+                category_id: event.target.value
+            }
+        });
+    }
+
     render() {
-        console.log("data=====", this.props);
+        console.log("data=====", this.state);
+        console.log("product props=====", this.props)
         const {category, brand, productName, price, images, description} = this.state;
       return (
         <div className="productForm">
@@ -124,13 +139,13 @@ class ProductForm extends React.Component {
                                     name="category" 
                                     id="category"
                                     required
-                                    onChange={this.handleChange}
-                                    value={category} 
+                                    onChange={this.handleCategoryChange}
+                                    value={category.category_name} 
                                     defaultValue={{ label: "Select Category", value: 0 }}
                                 >
                                  { 
                                      this.props.getProductData &&  this.props.getProductData.map((category, key) => {
-                                    return <option value={category.name} key={key} >{category.name}</option>
+                                    return <option value={category._id} key={key} >{category.name}</option>
                                     }) 
                                  }
                                 </Input>

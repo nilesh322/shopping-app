@@ -101,3 +101,9 @@
   color: white;
 }
 
+.login-logo {
+  margin-right: 15px;
+  color: white;
+  text-decoration: none !important;
+}
+
