@@ -1,6 +1,6 @@
 import * as types from '../types';
 
-export const userData = (state = JSON.parse(localStorage.getItem(types.USERDATA)), action) => {
+ const userData = (state = JSON.parse(localStorage.getItem(types.USERDATA)), action) => {
     switch (action.type) {
         case types.USERDATA:
             console.log("login reducer", state);
@@ -9,3 +9,5 @@ export const userData = (state = JSON.parse(localStorage.getItem(types.USERDATA)
             return state
     }
 };
+
+export default userData;
