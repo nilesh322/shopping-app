@@ -33,7 +33,7 @@ export default class ProductTable extends React.Component {
                                 <td>{number++}</td>
                                 <td>{item.category}</td>
                                 <td>{item.brand}</td>
-                                <td>{item.productName}</td>
+                                <td>{item.name}</td>
                                 <td>{item.price}</td>
                                 {/* <td>{item.image}</td> */}
                                 <td style={style}><img style={imgStyle} src={item.image} /></td>

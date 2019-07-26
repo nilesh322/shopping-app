@@ -38,8 +38,8 @@ import { getproductList } from '../redux/action/productAction';
     }
 
     render() {
-        console.log("homepage product",this.props);
-        let dataList = this.props.getProductList; 
+        // console.log("homepage product",this.props);
+        let dataList = this.props.getProductData; 
         return (
             <div>
                     { dataList.map((category, keyIndex)=> {
@@ -67,8 +67,8 @@ import { getproductList } from '../redux/action/productAction';
 } 
 
 const mapStateToProps = (state) => {
-    const { getProductList } = state;
-    return { getProductList };
+    const { getProductData } = state;
+    return { getProductData };
 };
 
 const mapDispatchToProps = dispatch => (

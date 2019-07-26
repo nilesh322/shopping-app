@@ -6,6 +6,9 @@ const  ProductList = (state = PRODUCT_LIST, action) => {
         case types.GET_PRODUCT_LIST:
             state = action.payload.data;
             return state;
+        case types.GET_CATEGORY_LIST:
+            state = action.payload.data;
+            return state;
         default:
             return state;
     }

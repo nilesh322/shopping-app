@@ -14,3 +14,10 @@ export function getproductList(data) {
          payload: data,
      };
  }
+
+ export function getCategoryList(data) {
+     return {
+         type: types.GET_CATEGORY_LIST,
+         payload: data 
+     }
+ }

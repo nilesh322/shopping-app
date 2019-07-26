@@ -1,14 +1,16 @@
 import { createStore, combineReducers } from 'redux';
 import cartReducer from '../redux/reducer/cartReducer';
 import productReducer from '../redux/reducer/productFormReducer';
-import getProductList from '../redux/reducer/productList';
+import getProductData from '../redux/reducer/productList';
 import viewMoreReducer from '../redux/reducer/viewMoreReducer';
+import userData from '../redux/reducer/loginReducer';
 
 const rootReducer = combineReducers({
     cart: cartReducer,
     product: productReducer,
-    getProductList: getProductList,
-    viewMoreReducer: viewMoreReducer
+    getProductData: getProductData,
+    viewMoreReducer: viewMoreReducer,
+    userData: userData
 })
 
 const store = createStore(

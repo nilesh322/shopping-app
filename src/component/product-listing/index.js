@@ -12,12 +12,11 @@ class ProductListing extends Component {
     }
 
     render() {
-
-        console.log("product listing props", this.props);
+        // console.log("product listing props", this.props);
         return(
             <div className="custom-css">
                 <div className='product-listing'>
-                {!this.props.display?
+                {!this.props.display && this.props.products ?
                     this.props.products.map((product, key) =>
                         <ProductListItem
                             product={product.product}
@@ -55,8 +54,7 @@ class ProductListing extends Component {
 
 function mapStateToProps(state) {
     return {
-        cart: state.cart,
-        getProductList: state.getProductList
+        cart: state.cart
     }
 }
 
