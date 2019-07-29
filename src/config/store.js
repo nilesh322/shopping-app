@@ -5,6 +5,7 @@ import getProductData from "../redux/reducer/productList";
 import getCategoryListData from "../redux/reducer/getProductCategoryReducer";
 import viewMoreReducer from "../redux/reducer/viewMoreReducer";
 import userData from "../redux/reducer/loginReducer";
+import getBrandListData from "../redux/reducer/getBrandReducer";
 
 const rootReducer = combineReducers({
   cart: cartReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   getProductData: getProductData,
   getCategoryListData: getCategoryListData,
   viewMoreReducer: viewMoreReducer,
-  userData: userData
+  userData: userData,
+  getBrandListData: getBrandListData
 });
 
 const store = createStore(

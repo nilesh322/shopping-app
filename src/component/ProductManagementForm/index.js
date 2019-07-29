@@ -12,6 +12,7 @@ import {
   FormText
 } from "reactstrap";
 import ProductTable from "./productTable";
+import InputBox from "../shared/input";
 
 //redux
 import { bindActionCreators } from "redux";
@@ -21,7 +22,8 @@ import {
   getCategoryList,
   getAllProductList
 } from "../../redux/action/productAction";
-import { API, BASE_URL, ADD_PRODUCT_URL } from "../API/api";
+import { getAllBrandList } from "../../redux/action/brandListAction";
+import { API, BASE_URL } from "../API/api";
 
 var imageSourceCode;
 class ProductForm extends React.Component {
@@ -29,15 +31,71 @@ class ProductForm extends React.Component {
     super(props);
     this.state = {
       data: [],
-      category: {
-        category_name: "",
-        category_id: ""
-      },
+      category: "",
+      //   category: {
+      //     category_name: "",
+      //     category_id: ""
+      //   },
       brand: "",
       productName: "",
       price: "",
       images: [],
-      description: ""
+      description: "",
+      discount: null,
+      warranty: "",
+
+      //general
+      in_the_box: "",
+      model_name: "",
+      model_number: "",
+      color: "",
+      sim_type: "",
+      touchScreen: "",
+      quick_charging: "",
+
+      //display_feature
+      size: "",
+      resolution: "",
+      resolution_type: "",
+      other_features: "",
+      brightness: "",
+      contrast_ratio: "",
+      analog_tv_reception: "",
+      view_angle: "",
+      panel_type: "",
+      digital_noise_filter: "",
+      aspect_ratio: "",
+
+      //memory_storage
+      internal_storage: "",
+      ram: "",
+      expandable: "",
+
+      //camera
+      primary_camera: "",
+      secondary_camera: "",
+      flash: false,
+      hd_recording: false,
+
+      //connectivity_feature
+      network_type: "",
+      supported_network: "",
+      bluetooth: "",
+      bluetooth_version: "",
+      wifi: "",
+      wifi_version: "",
+      usb_3_0_slots: "",
+      usb_2_0_slots: "",
+      headphone_jack: true,
+
+      //smart_tv_feature
+      supported_apps: "",
+      operating_system: "",
+      screen_mirroring: "",
+      content_providers: "",
+      supported_devices_for_casting: "",
+
+      highlight: []
     };
 
     this.resposeStandard = {
@@ -58,7 +116,13 @@ class ProductForm extends React.Component {
     this.allProductResponse = Object.assign({}, this.resposeStandard, {
       success: response => {
         console.log("all product list", response);
-        // this.props.getAllProductList(response);
+        this.props.getAllProductList(response);
+      }
+    });
+    this.allBrandResponse = Object.assign({}, this.resposeStandard, {
+      success: response => {
+        console.log("all brand list", response);
+        this.props.getAllBrandList(response);
       }
     });
   }
@@ -66,7 +130,7 @@ class ProductForm extends React.Component {
   componentDidMount() {
     API.getCategories(this.categoriesResponse, "", BASE_URL);
     API.getAllProduct(this.allProductResponse, "", BASE_URL);
-    // API.setProduct(this.productResponse, '', BASE_URL);
+    API.getBrand(this.allBrandResponse, "", BASE_URL);
   }
 
   handleFormSubmit = event => {
@@ -78,17 +142,21 @@ class ProductForm extends React.Component {
       productName,
       price,
       images,
-      description
+      description,
+      warranty,
+      discount
     } = this.state;
     let request_obj = {
-      category_id: category.category_id,
+      category_id: category,
       //   category: category.category_name,
       brand: brand,
       name: productName,
       price: price,
       // "images": imageSourceCode,
-      // "images": images,
-      description: description
+      images: images,
+      description: description,
+      warranty: warranty,
+      discount: discount
     };
     this.setState({
       data: request_obj
@@ -154,7 +222,11 @@ class ProductForm extends React.Component {
       productName,
       price,
       images,
-      description
+      description,
+      discount,
+      warranty,
+      in_the_box,
+      model_name
     } = this.state;
     return (
       <div className="productForm">
@@ -172,8 +244,8 @@ class ProductForm extends React.Component {
                       type="select"
                       name="category"
                       id="category"
-                      onChange={this.handleCategoryChange}
-                      value={this.state.category}
+                      onChange={this.handleChange}
+                      value={category}
                     >
                       {this.props.getCategoryListData &&
                         this.props.getCategoryListData.map((category, key) => {
@@ -192,14 +264,27 @@ class ProductForm extends React.Component {
                   </Label>
                   <Col sm={8}>
                     <Input
-                      type="text"
+                      type="select"
                       name="brand"
                       required
                       id="brand"
                       placeholder="Enter brand name"
                       onChange={this.handleChange}
                       value={brand}
-                    />
+                    >
+                      {this.props.getBrandListData &&
+                        this.props.getBrandListData
+                          .filter(brand => {
+                            return brand.category_id === category;
+                          })
+                          .map((brand, key) => {
+                            return (
+                              <option value={brand._id} key={key}>
+                                {brand.name}
+                              </option>
+                            );
+                          })}
+                    </Input>
                   </Col>
                 </FormGroup>
                 <FormGroup row>
@@ -234,7 +319,69 @@ class ProductForm extends React.Component {
                     />
                   </Col>
                 </FormGroup>
-                {/* <FormGroup row>
+                <FormGroup row>
+                  <Label for="discount" sm={2}>
+                    Discount
+                  </Label>
+                  <Col sm={8}>
+                    <Input
+                      type="number"
+                      name="discount"
+                      required
+                      id="discount"
+                      placeholder="Enter discount"
+                      onChange={this.handleChange}
+                      value={discount}
+                    />
+                  </Col>
+                </FormGroup>
+                <FormGroup row>
+                  <Label for="warranty" sm={2}>
+                    Warranty
+                  </Label>
+                  <Col sm={8}>
+                    <Input
+                      type="text"
+                      name="warranty"
+                      required
+                      id="warranty"
+                      placeholder="Enter warranty details"
+                      onChange={this.handleChange}
+                      value={warranty}
+                    />
+                  </Col>
+                </FormGroup>
+                <FormGroup row>
+                  <Label for="in_the_box" sm={2}>
+                    In the box
+                  </Label>
+                  <Col sm={8}>
+                    <Input
+                      type="text"
+                      name="in_the_box"
+                      id="in_the_box"
+                      placeholder="Enter box details"
+                      onChange={this.handleChange}
+                      value={in_the_box}
+                    />
+                  </Col>
+                </FormGroup>
+                <FormGroup row>
+                  <Label for="model_name" sm={2}>
+                    Model name
+                  </Label>
+                  <Col sm={8}>
+                    <Input
+                      type="text"
+                      name="model_name"
+                      id="model_name"
+                      placeholder="Enter model name"
+                      onChange={this.handleChange}
+                      value={model_name}
+                    />
+                  </Col>
+                </FormGroup>
+                <FormGroup row>
                   <Label for="image" sm={2}>
                     Product Image
                   </Label>
@@ -251,7 +398,7 @@ class ProductForm extends React.Component {
                       Please select product image here.
                     </FormText>
                   </Col>
-                </FormGroup> */}
+                </FormGroup>
                 <FormGroup row>
                   <Label for="description" sm={2}>
                     Product Description
@@ -277,6 +424,7 @@ class ProductForm extends React.Component {
           </Row>
           <ProductTable
             data={this.props.product.data}
+            productData={this.props.getProductData}
             imageSourceCode={this.imageSourceCode}
           />
         </Container>
@@ -286,8 +434,13 @@ class ProductForm extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const { product, getProductData, getCategoryListData } = state;
-  return { product, getProductData, getCategoryListData };
+  const {
+    product,
+    getProductData,
+    getCategoryListData,
+    getBrandListData
+  } = state;
+  return { product, getProductData, getCategoryListData, getBrandListData };
 };
 
 const mapDispatchToProps = dispatch =>
@@ -295,7 +448,8 @@ const mapDispatchToProps = dispatch =>
     {
       productData,
       getCategoryList,
-      getAllProductList
+      getAllProductList,
+      getAllBrandList
     },
     dispatch
   );

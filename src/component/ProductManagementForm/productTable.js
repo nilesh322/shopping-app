@@ -34,22 +34,29 @@ export default class ProductTable extends React.Component {
                 <th>Price</th>
                 {/* <th>Image</th> */}
                 <th>Description</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {this.props.data &&
-                this.props.data.map(item => (
+              {this.props.productData &&
+                this.props.productData.map((item, key) => (
                   <tr>
                     <td>{number++}</td>
-                    <td>{item.category}</td>
-                    <td>{item.brand}</td>
+                    <td>{item.category_id}</td>
+                    <td>{item.brand.name}</td>
                     <td>{item.name}</td>
                     <td>{item.price}</td>
                     {/* <td>{item.image}</td> */}
-                    <td style={style}>
+                    {/* <td style={style}>
                       <img style={imgStyle} src={item.image} />
+                    </td>*/}
+                    <td>{item.brand.description}</td>
+                    <td>
+                      <i class="glyphicon glyphicon-pencil" />
+
+                      {/* <i class="far fa-eye"></i> */}
+                      {/* <i class="far fa-trash-alt" /> */}
                     </td>
-                    <td>{item.description}</td>
                   </tr>
                 ))}
             </tbody>

@@ -5,6 +5,7 @@ const GET_CATEGORIES = "/categories";
 const ALL_PRODUCT_URL = "/products";
 const LOGIN_URL = "/auth/login";
 const SIGNUP_URL = "/auth/sign-up";
+const GET_BRANDS = "/brands";
 
 const buildHeader = token => {
   var header = {
@@ -13,7 +14,7 @@ const buildHeader = token => {
     //'Cache-Control': 'no-cache',
     //'Access-Control-Allow-Origin': 'http://192.168.102.120/api.itelbpo/api',
     Authorization:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMWNiMTZlY2NhMmI5Njg1MzZhYTUyYyIsImlhdCI6MTU2NDM4NjQwNCwiZXhwIjoxNTY0NDcyODA0fQ.3NaV-OAHUHJvohAYWZt-R2FWheuZVzV1Dm2PyEm6egs"
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMWNiMTZlY2NhMmI5Njg1MzZhYTUyYyIsImlhdCI6MTU2NDM5OTg1NSwiZXhwIjoxNTY0NDg2MjU1fQ.DFxOIZKmH6mj96-3Rn3YZrYj_cLfKCiscItLtEYmvQY"
   };
 
   return header;
@@ -39,6 +40,9 @@ export const API = {
 
   getCategories: (onResponse, data, BASE_URL, token) => {
     request(onResponse, data, "GET", BASE_URL + GET_CATEGORIES, token);
+  },
+  getBrand: (onResponse, data, BASE_URL, token) => {
+    request(onResponse, data, "GET", BASE_URL + GET_BRANDS, token);
   },
 
   setLogin: (onResponse, data, BASE_URL, token) => {

@@ -4,3 +4,4 @@ export const GET_MORE_DATA = "GET_MORE_DATA";
 export const GET_CATEGORY_LIST = "GET_CATEGORY_LIST";
 export const USERDATA = "USERDATA";
 export const GET_ALL_PRODUCT_LIST = "GET_ALL_PRODUCT_LIST";
+export const GET_ALL_BRAND_LIST = "GET_ALL_BRAND_LIST";
