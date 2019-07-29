@@ -12,8 +12,8 @@ const buildHeader = token => {
     "Content-Type": "application/json",
     //'Cache-Control': 'no-cache',
     //'Access-Control-Allow-Origin': 'http://192.168.102.120/api.itelbpo/api',
-    Authorization: token
-    //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMWNiMTZlY2NhMmI5Njg1MzZhYTUyYyIsImlhdCI6MTU2NDEzNjIwOCwiZXhwIjoxNTY0MjIyNjA4fQ.P9X2bq8tnRJorGPYfacgWAx2_iwXyVQ9AIl7G6rlbuw"
+    Authorization:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMWNiMTZlY2NhMmI5Njg1MzZhYTUyYyIsImlhdCI6MTU2NDM4NjQwNCwiZXhwIjoxNTY0NDcyODA0fQ.3NaV-OAHUHJvohAYWZt-R2FWheuZVzV1Dm2PyEm6egs"
   };
 
   return header;
